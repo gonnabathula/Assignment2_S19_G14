@@ -71,6 +71,58 @@ namespace Assignment2_S19
         // Complete the maximumToys function below.
         static int maximumToys(int[] prices, int k)
         {
+            int min;
+
+            for (int i = 0; i < prices.Length; i++)
+            {
+                min = i;
+
+                for (int x = i + 1; x < prices.Length; x++)
+
+                    if (prices[x] < prices[min])
+
+                        min = x;
+
+
+                if (min != i)
+                {
+                    int temp = prices[i];
+                    prices[i] = prices[min];
+                    prices[min] = temp;
+
+
+                }
+
+
+                //Console.Write("  " + prices[i]);
+
+            }
+
+
+            int sum = 0;
+
+            {
+                for (int i = 0; i < prices.Length; i++)
+                {
+                    sum += prices[i];
+
+                    if (sum <= k)
+                    {
+
+                        continue;
+
+                    }
+
+                    else
+                    {
+
+                        return i;
+                        //Console.WriteLine("\n" +i);
+                    }
+                }
+            }
+            //Console.ReadKey();
+
             return 0;
         }
 
@@ -96,7 +148,33 @@ namespace Assignment2_S19
         // Complete the findMedian function below.
         static int findMedian(int[] arr)
         {
-            return 0;
+            Console.WriteLine("Sorted Array in Ascending  Order");
+            int l = arr.Length; //lenght of the array.
+            int minpos = 0;
+            // selection sort of the given array.
+            for (int i = 0; i < l; i++)
+            {
+                minpos = i;
+                for (int x = i + 1; x < l; x++)
+                    if (arr[x] < arr[minpos])
+                        minpos = x;
+                if (minpos != i)
+                {
+                    int temp = arr[i]; //exchanging the higher number with the lower number.
+                    arr[i] = arr[minpos];
+                    arr[minpos] = temp;
+                }
+
+
+                Console.Write("  " + arr[i]);
+            }
+            {
+
+                int M = l / 2; //to find the median location in the sorted array.
+                Console.WriteLine("\n" + "Median Value:");
+                return M;
+            }
+            //return 0;
         }
 
         // Complete the closestNumbers function below.
@@ -108,6 +186,7 @@ namespace Assignment2_S19
         // Complete the dayOfProgrammer function below.
         static string dayOfProgrammer(int year)
         {
+            Console.ReadKey();
             return "";
         }
     }
