@@ -22,7 +22,7 @@ namespace Assignment2_S19
 
             // Balanced sums
             Console.WriteLine("\n\nBalanced sums");
-            List<int> arr = new List<int> { 1, 2, 3 };
+            List<int> arr = new List<int> { 1, 2, 3,3 };
             Console.WriteLine(balancedSums(arr));
 
             // Missing numbers
@@ -138,20 +138,22 @@ namespace Assignment2_S19
             int rsum;
             int count = arr.Count - 1;
 
-
-            for (int a = 0; a < count; ++a)
+            for (int a = 0; a < count; ++a)     //iterating through Arraylist for elements on the left of the given element
             {
                 lsum = 0;
                 rsum = 0;
-                for (int b = 0; b < a; b++)
-                    lsum += arr[b];
+                for (int b = 0; b < a; b++)        //iterating through Arraylist for elements on the right of the given element
+                    lsum += arr[b];                 //adding the elements on the left
                 //Console.WriteLine(lsum + ":");
                 for (int b = a + 1; b < count; b++)
-                    rsum += arr[b];
+                {
+                    rsum += arr[b];                 //adding the elements on the left
 
-                if (lsum == rsum)
-                    return "Yes";
-                //Console.WriteLine(rsum);
+                    if (lsum == rsum)               //comparing the values              
+                        return "Yes";
+                    lsum += arr[b + 1];             //if not 'yes', moving on to the next element
+                    rsum -= arr[b];
+                }
             }
             return "No";
 
