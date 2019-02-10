@@ -132,9 +132,29 @@ namespace Assignment2_S19
         }
 
         // Complete the balancedSums function below.
-        static string balancedSums(List<int> arr)
+        static String balancedSums(List<int> arr)
         {
-            return "";
+            int lsum;
+            int rsum;
+            int count = arr.Count - 1;
+
+
+            for (int a = 0; a < count; ++a)
+            {
+                lsum = 0;
+                rsum = 0;
+                for (int b = 0; b < a; b++)
+                    lsum += arr[b];
+                //Console.WriteLine(lsum + ":");
+                for (int b = a + 1; b < count; b++)
+                    rsum += arr[b];
+
+                if (lsum == rsum)
+                    return "Yes";
+                //Console.WriteLine(rsum);
+            }
+            return "No";
+
         }
 
         // Complete the missingNumbers function below.
@@ -172,8 +192,23 @@ namespace Assignment2_S19
         // Complete the gradingStudents function below.
         static int[] gradingStudents(int[] grades)
         {
-            return new int[] { };
+            for (int i = 0; i < grades.Length; i++)         //A loop to iterate through the array
+            {
+                if (grades[i] >= 38)
+                {
+                    if (grades[i] % 5 == 3)              //Rounding off to the next multiple of 5
+                    {
+                        grades[i] += 2;
+                    }
+                    if (grades[i] % 5 == 4)             //Rounding off to the next multiple of 5
+                    {
+                        grades[i] += 1;
+                    }
+                }
+            }
+            return grades;                          //Returning the updates result
         }
+
 
         // Complete the findMedian function below.
         static int findMedian(int[] arr)
