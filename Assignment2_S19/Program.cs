@@ -71,53 +71,43 @@ namespace Assignment2_S19
         // Complete the maximumToys function below.
         static int maximumToys(int[] prices, int k)
         {
-            int min;
+            int min; //min is used to exchange the current lowest value in the array.
 
             for (int i = 0; i < prices.Length; i++)
             {
-                min = i;
+                min = i; // initializing the min to current value in the array. 
 
-                for (int x = i + 1; x < prices.Length; x++)
+                for (int x = i + 1; x < prices.Length; x++) // comparing the min and current value to find which is smaller.
 
-                    if (prices[x] < prices[min])
+                    if (prices[x] < prices[min]) //to check the next element is smaller than min value.
 
-                        min = x;
+                        min = x; //new min value assinged, if above conditon satisfied.
 
 
-                if (min != i)
+                if (min != i) //exchanging the lowest number with current number. 
                 {
                     int temp = prices[i];
                     prices[i] = prices[min];
                     prices[min] = temp;
-
-
                 }
 
-
-                //Console.Write("  " + prices[i]);
-
             }
+            //selection sort ends here.
 
-
-            int sum = 0;
+            int sum = 0; //initializing sum to assign the sum of required elements in an array.
 
             {
                 for (int i = 0; i < prices.Length; i++)
                 {
-                    sum += prices[i];
+                    sum += prices[i]; // sum up the elements till the length of the array.
 
-                    if (sum <= k)
+                    if (sum <= k) //to sum up to K number of elements in an array.
                     {
-
                         continue;
-
                     }
-
                     else
                     {
-
                         return i;
-                        //Console.WriteLine("\n" +i);
                     }
                 }
             }
@@ -148,7 +138,7 @@ namespace Assignment2_S19
         // Complete the findMedian function below.
         static int findMedian(int[] arr)
         {
-            Console.WriteLine("Sorted Array in Ascending  Order");
+            Console.WriteLine("Sorted Array in Ascending Order");
             int l = arr.Length; //lenght of the array.
             int minpos = 0;
             // selection sort of the given array.
@@ -166,7 +156,7 @@ namespace Assignment2_S19
                 }
 
 
-                Console.Write("  " + arr[i]);
+                Console.Write("  " + arr[i]); // to print the sorted array in ascending order.
             }
             {
 
