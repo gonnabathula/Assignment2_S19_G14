@@ -22,7 +22,7 @@ namespace Assignment2_S19
 
             // Balanced sums
             Console.WriteLine("\n\nBalanced sums");
-            List<int> arr = new List<int> { 1, 2, 3,3 };
+            List<int> arr = new List<int> { 1, 2, 3};
             Console.WriteLine(balancedSums(arr));
 
             // Missing numbers
@@ -164,29 +164,42 @@ namespace Assignment2_S19
         {
             int n1 = arr.Length;
             int n2 = brr.Length;
-            int[] freq = new int[50];               //created a frequency array
-            freq[0] = 1;
+            Boolean[] count = new Boolean[n1];  //boolean array to find if no. is counted or not
+            var missVal = new List<int>();        //create list to save missing values
 
-            int firstele = brr[0];                //storing the value of the first element from the orriginal array
-            for (int i = 1; i < n2; i++)         //computing the frequency of each element from original array in accordance with the first element
+            for (int i = 0; i < n2; i++)
             {
-                int diff = brr[i] - firstele;
-                freq[0 + diff]++;               //incrementing the frequency
+                int f = 0;                   // check if the no. is matched
+                for (int j = 0; j < n1; j++)
+                {
+                    if (count[j] == true)
+                        continue;     // continue if matched already
+                    if (brr[i] == arr[j])
+                    {
+                        count[j] = true;
+                        f++;    
+                        break;
+                    }
+                }
+                if (f == 0)
+                {
+                    int c = missVal.Count;
+                    for (int k = 0; k < c; k++)   // loop to check if the missing number if in the already present in the list
+                    {
+                        if (brr[i] == missVal[k])
+                            f = 1;
+                    }
+                    if (f == 0)   //add the number to missing list if not matched or present already 
+                    {
+                        missVal.Add(brr[i]);
+                    }
+                }
             }
 
-            for (int i = 0; i < n1; i++)       //computing the frequency of each element from array with missing values in accordance with the first element
-            {
-
-                int diff = arr[i] - firstele;
-                freq[0 + diff]--;             //decrementing the frequency
-            }
-
-            for (int i = 0; i < freq.Length; i++)  //iterate the frequency array
-            {
-                if (freq[i] > 0)
-                    Console.Write("{0} ", firstele + (i - 0)); //print the frequency array by computing using first element from the original array
-            }
-
+            int[] output = new int[missVal.Count];
+            output = missVal.ToArray();     //converting list to an array
+            sortedArray(output);
+            return output;
             return new int[] { };
         }
 
@@ -387,7 +400,7 @@ namespace Assignment2_S19
             //int countDaysTillAug_Leap = 231;
             programmerDateInSeptember = 256 - countDaysTillAug_notLeap;
             date02 = programmerDateInSeptember.ToString() + ".09." + year.ToString(); //computing directly since 1918 is not a leap year
-            return "";
+            return date02;
 
             Console.ReadKey();
             return "";
